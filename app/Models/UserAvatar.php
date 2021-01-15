@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Divin extends Model
+class UserAvatar extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'user_avatar_id';
+
+    protected $guarded = [];
 }
