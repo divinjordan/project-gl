@@ -12,6 +12,10 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+        <x-socialite-auth ></x-socialite-auth>
+
+        <x-custom-error class="mb-4" :errors="session('authErrors')"/>
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -40,17 +44,25 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
+            <div class="mt-4">
+                <button type="submit" class="block w-full px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     {{ __('Login') }}
-                </x-button>
+                </button>
+                @if (Route::has('password.request'))
+                <a class="mt-2 block underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
+                </a>
+            @endif
+
             </div>
         </form>
+        <x-slot name="bottom">
+            <div class="mt-4">
+                <a class="underline" href="{{ route('register') }}"> Pas encore de compte ? Creer votre compte </a>
+            </div>
+        </x-slot>
+       
     </x-auth-card>
+    
+   
 </x-guest-layout>

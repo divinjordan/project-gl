@@ -32,5 +32,7 @@
                 </x-button>
             </div>
         </form>
+        <x-slot name="bottom">
+        </x-slot>
     </x-auth-card>
 </x-guest-layout>

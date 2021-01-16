@@ -1,6 +1,7 @@
 {
     "Register":"Créer un compte",
     "Login": "Connexion",
+    "Logout": "Deconnexion",
     "Email":"Adresse Email",
     "Password": "Mot de passe",
     "Remember me": "Se souvenir de moi",
@@ -11,5 +12,8 @@
     "Reset Password": "Réinitialiser le mot de passe",
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one." : "Vous avez oublié votre mot de passe ? Pas de problème. Il vous suffit de nous communiquer votre adresse électronique et nous vous enverrons par courrier électronique un lien de réinitialisation du mot de passe qui vous permettra d'en choisir un nouveau.",
     "This is a secure area of the application. Please confirm your password before continuing.":"Il s'agit d'une zone sécurisée de l'application. Veuillez confirmer votre mot de passe avant de continuer.",
-    "Confirm":"Confirmer"
+    "Confirm":"Confirmer",
+    "Whoops! Something went wrong.": "Une erreur c'est produite",
+    "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.":"Merci de vous être inscrits ! Avant de commencer, pourriez-vous vérifier votre adresse électronique en cliquant sur le lien que nous venons de vous envoyer par e-mail ? Si vous n'avez pas reçu ce courriel, nous vous en enverrons un autre avec plaisir.",
+    "Resend Verification Email":"Envoyer un nouveau mail"
 }
