@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMessageFilesTable extends Migration
+class CreateUserFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateMessageFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('message_files', function (Blueprint $table) {
-            $table->bigIncrements('message_file_id');
-            $table->unsignedBigInteger('message_id');
+        Schema::create('user_files', function (Blueprint $table) {
+            $table->bigIncrements('user_avatar_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('file_id');
             $table->timestamps();
 
-            $table->foreignId('message_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('file_id')->constrained()->onDelete('cascade');
         });
     }
@@ -31,6 +31,6 @@ class CreateMessageFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('message_files');
+        Schema::dropIfExists('user_files');
     }
 }

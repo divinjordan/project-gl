@@ -22,7 +22,9 @@ class CreateOffersTable extends Migration
             $table->string('offer_location');
             $table->string('offer_article_state');
             $table->string('offer_brand')->nullable();
+            $table->string('offer_size');
             $table->timestamps();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 

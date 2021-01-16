@@ -14,8 +14,15 @@ class CreatePropositionsTable extends Migration
     public function up()
     {
         Schema::create('propositions', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('proposition_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('offer_id');
+            $table->string('proposition_value');
+            $table->string('proposition_state');
             $table->timestamps();
+            
+            $table->foreign('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('offer_id')->constrained()->onDelete('cascade');
         });
     }
 

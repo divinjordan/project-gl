@@ -14,8 +14,12 @@ class CreateOfferAlertsTable extends Migration
     public function up()
     {
         Schema::create('offer_alerts', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('offer_alert_id');
+            $table->unsignedBigInteger('user_id');
+            $table->text('preferences');
             $table->timestamps();
+
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 

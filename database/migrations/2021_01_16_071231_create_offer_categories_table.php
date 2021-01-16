@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOfferFilesTable extends Migration
+class CreateOfferCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateOfferFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('offer_files', function (Blueprint $table) {
-            $table->bigIncrements('offer_file_id');
+        Schema::create('offer_categories', function (Blueprint $table) {
+            $table->bigIncrements('offer_category_id');
             $table->unsignedBigInteger('offer_id');
-            $table->unsignedBigInteger('file_id');
+            $table->unsignedBigInteger('category_id');
+            $table->string('categorisation_type');
             $table->timestamps();
 
-            $table->foreignId('file_id')->constrained()->onDelete('cascade');
             $table->foreignId('offer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -31,6 +32,6 @@ class CreateOfferFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offer_files');
+        Schema::dropIfExists('offer_categories');
     }
 }

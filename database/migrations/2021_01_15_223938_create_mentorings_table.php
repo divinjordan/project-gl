@@ -14,8 +14,13 @@ class CreateMentoringsTable extends Migration
     public function up()
     {
         Schema::create('mentorings', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('mentoring_id');
+            $table->unsignedBigInteger("mentor_id");
+            $table->unsignedBigInteger('mentored_id');
             $table->timestamps();
+
+            $table->foreign('mentor_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('mentored_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
