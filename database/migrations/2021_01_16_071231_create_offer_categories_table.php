@@ -20,8 +20,8 @@ class CreateOfferCategoriesTable extends Migration
             $table->string('categorisation_type');
             $table->timestamps();
 
-            $table->foreignId('offer_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreign('offer_id')->references('offer_id')->on('offers')->onDelete('cascade');
+            $table->foreign('category_id')->references('category_id')->on('categories')->onDelete('cascade');
         });
     }
 

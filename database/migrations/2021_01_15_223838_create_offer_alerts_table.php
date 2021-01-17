@@ -15,11 +15,11 @@ class CreateOfferAlertsTable extends Migration
     {
         Schema::create('offer_alerts', function (Blueprint $table) {
             $table->bigIncrements('offer_alert_id');
-            $table->unsignedBigInteger('user_id');
-            $table->text('preferences');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('preference_id');
             $table->timestamps();
 
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreign('preference_id')->references('preference_id')->on('preferences')->onDelete('cascade');
         });
     }
 

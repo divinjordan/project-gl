@@ -24,7 +24,6 @@ class CreateOffersTable extends Migration
             $table->string('offer_brand')->nullable();
             $table->string('offer_size');
             $table->timestamps();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 

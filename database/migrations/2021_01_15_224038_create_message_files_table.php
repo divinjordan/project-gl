@@ -18,9 +18,8 @@ class CreateMessageFilesTable extends Migration
             $table->unsignedBigInteger('message_id');
             $table->unsignedBigInteger('file_id');
             $table->timestamps();
-
-            $table->foreignId('message_id')->constrained()->onDelete('cascade');
-            $table->foreignId('file_id')->constrained()->onDelete('cascade');
+            $table->foreign('file_id')->references('file_id')->on('files')->onDelete('cascade');
+            $table->foreign('message_id')->references('message_id')->on('messages')->onDelete('cascade');
         });
     }
 

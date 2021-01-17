@@ -18,9 +18,8 @@ class CreateOfferFilesTable extends Migration
             $table->unsignedBigInteger('offer_id');
             $table->unsignedBigInteger('file_id');
             $table->timestamps();
-
-            $table->foreignId('file_id')->constrained()->onDelete('cascade');
-            $table->foreignId('offer_id')->constrained()->onDelete('cascade');
+            $table->foreign('file_id')->references('file_id')->on('files')->onDelete('cascade');
+            $table->foreign('offer_id')->references('offer_id')->on('offers')->onDelete('cascade');
         });
     }
 
