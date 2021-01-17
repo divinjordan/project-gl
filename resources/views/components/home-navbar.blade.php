@@ -34,7 +34,7 @@
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
               <!-- Current: "bg-red-600 text-white", Default: "text-gray-300 hover:bg-red-600 hover:text-white" -->
-              <a href="#" class="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium"> Accueil </a>
+              <a href="{{ route("home") }}" class="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium"> Accueil </a>
             </div>
           </div>
         </div>

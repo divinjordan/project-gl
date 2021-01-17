@@ -28,7 +28,7 @@ Route::get('/auth/callback/google', [SocialiteController::class,'google']);
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
