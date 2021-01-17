@@ -34,7 +34,7 @@
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
               <!-- Current: "bg-red-600 text-white", Default: "text-gray-300 hover:bg-red-600 hover:text-white" -->
-              <a href="#" class="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+              <a href="#" class="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium"> Accueil </a>
             </div>
           </div>
         </div>
@@ -80,9 +80,9 @@
                 </div>
                 <!-- end of dropdown -->
               @else
-                  <a href="{{ route('login') }}" class="hidden md:block bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
+                  <a href="{{ route('login') }}" class="hidden md:block bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium"> Connexion </a>
                   @if (Route::has('register'))
-                      <a href="{{ route('register') }}" class="ml-4 hidden md:block bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium">Register</a>
+                      <a href="{{ route('register') }}" class="ml-4 hidden md:block bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium"> Créer un compte </a>
                   @endif
               @endauth
           </div>
@@ -99,13 +99,13 @@
       <div class="px-2 pt-2 pb-3 space-y-1">
         <div class="py-4">
           <!-- Current: "bg-red-600 text-white", Default: "text-gray-300 hover:bg-red-600 hover:text-white" -->
-          <a href="#" class="bg-red-600 text-white block px-3 py-2 rounded-md text-base font-medium"> Home </a>
+          <a href="#" class="bg-red-600 text-white block px-3 py-2 rounded-md text-base font-medium"> Accueil </a>
         </div>
         <div class="border-t border-gray-200 pt-4">
           @if (!Auth::check())
-            <a href="#" class="bg-red-600 text-white block text-center px-3 py-2 rounded-md text-base font-medium"> Login </a>
+            <a href="#" class="bg-red-600 text-white block text-center px-3 py-2 rounded-md text-base font-medium"> Connexion </a>
             @if (Route::has('register'))
-              <a href="{{ route('register') }}" class="bg-red-600 block text-center mt-1 text-white px-3 py-2 rounded-md text-base font-medium">Register</a>
+              <a href="{{ route('register') }}" class="bg-red-600 block text-center mt-1 text-white px-3 py-2 rounded-md text-base font-medium"> Créer un compte </a>
             @endif
           @endif
         </div>
