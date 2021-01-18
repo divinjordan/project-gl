@@ -3,6 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ResponseController;
+use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\RequestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,7 +37,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard',['page' => '']);
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/dashboard/profile',function(){
