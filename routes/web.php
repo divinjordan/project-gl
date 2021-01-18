@@ -38,14 +38,11 @@ Route::get('/dashboard/profile',function(){
     return redirect('dashboard');
 })->middleware(['auth'])->name('profile');
 
-Route::resource('offers',OfferController::class);
-Route::resource('invitations',InvitationController::class);
-Route::resource('files',FileController::class);
-Route::resource('mentorings',MentoringController::class);
-Route::resource('messages',MessageController::class);
-Route::resource('alerts',OfferAlertController::class);
-Route::resource('preferences',PreferenceController::class);
-Route::resource('propositions',PropositionController::class);
-
+Route::resource('courses',CourseController::class);
+Route::resource('questions',QuestionController::class);
+Route::resource('responses',ResponseController::class);
+Route::resource('evaluations',EvaluationController::class);
+Route::resource('rooms',RoomController::class);
+Route::resource('requests',RequestAlertController::class);
 
 require __DIR__.'/auth.php';
