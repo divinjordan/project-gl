@@ -28,13 +28,13 @@
         </div>
         <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex-shrink-0 flex items-center text-white">
-            <img class="block lg:hidden h-8 w-auto" src="img/logo.jpeg" alt="Nandi's Secret">
-            <img class="hidden lg:block h-8 w-auto" src="img/logo.jpeg" alt="Nandi's Secret">
+            <img class="block lg:hidden h-8 w-auto" src="img/logo.jpg" alt="Eval Online">
+            <img class="hidden lg:block h-8 w-auto" src="img/logo.jpg" alt="Eval Online">
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
-              <!-- Current: "bg-red-600 text-white", Default: "text-gray-300 hover:bg-red-600 hover:text-white" -->
-              <a href="{{ route("home") }}" class="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium"> Accueil </a>
+              <!-- Current: "bg-indigo-700 text-white", Default: "text-gray-300 hover:bg-indigo-700 hover:text-white" -->
+              <a href="{{ route("home") }}" class="bg-indigo-700 text-white px-3 py-2 rounded-md text-sm font-medium"> Accueil </a>
             </div>
           </div>
         </div>
@@ -42,8 +42,8 @@
         @if (Route::has('login'))
           <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               @auth
-                  <button class="bg-gray-200 p-1 rounded-full text-gray-400 hover:text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                    <span class="sr-only">Vos notification</span>
+                  <button class="bg-gray-200 p-1 rounded-full text-gray-400 hover:text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <span class="sr-only">Vos notifications</span>
                     <!-- Heroicon name: bell -->
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -80,9 +80,9 @@
                 </div>
                 <!-- end of dropdown -->
               @else
-                  <a href="{{ route('login') }}" class="hidden md:block bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium"> Connexion </a>
+                  <a href="{{ route('login') }}" class="hidden md:block bg-indigo-700 text-white px-3 py-2 rounded-md text-sm font-medium"> Connexion </a>
                   @if (Route::has('register'))
-                      <a href="{{ route('register') }}" class="ml-4 hidden md:block bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium"> Créer un compte </a>
+                      <a href="{{ route('register') }}" class="ml-4 hidden md:block bg-indigo-700 text-white px-3 py-2 rounded-md text-sm font-medium"> Créer un compte </a>
                   @endif
               @endauth
           </div>
@@ -98,14 +98,14 @@
     <div x-bind:class="{'block': isOpen, 'hidden': !isOpen}" class="md:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
         <div class="py-4">
-          <!-- Current: "bg-red-600 text-white", Default: "text-gray-300 hover:bg-red-600 hover:text-white" -->
-          <a href="#" class="bg-red-600 text-white block px-3 py-2 rounded-md text-base font-medium"> Accueil </a>
+          <!-- Current: "bg-indigo-700 text-white", Default: "text-gray-300 hover:bg-indigo-700 hover:text-white" -->
+          <a href="#" class="bg-indigo-700 text-white block px-3 py-2 rounded-md text-base font-medium"> Accueil </a>
         </div>
         <div class="border-t border-gray-200 pt-4">
           @if (!Auth::check())
-            <a href="#" class="bg-red-600 text-white block text-center px-3 py-2 rounded-md text-base font-medium"> Connexion </a>
+            <a href="#" class="bg-indigo-700 text-white block text-center px-3 py-2 rounded-md text-base font-medium"> Connexion </a>
             @if (Route::has('register'))
-              <a href="{{ route('register') }}" class="bg-red-600 block text-center mt-1 text-white px-3 py-2 rounded-md text-base font-medium"> Créer un compte </a>
+              <a href="{{ route('register') }}" class="bg-indigo-700 block text-center mt-1 text-white px-3 py-2 rounded-md text-base font-medium"> Créer un compte </a>
             @endif
           @endif
         </div>

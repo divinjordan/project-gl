@@ -52,7 +52,6 @@ class SocialiteController extends Controller
                 'email' => $user->email,
                 'password' => Str::random(20),
             ]);
-            
             Auth::login($userCreated);
             event(new Registered($userCreated));
         }

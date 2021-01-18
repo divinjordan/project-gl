@@ -1,1 +1,1 @@
-<img src="img/logo.jpeg" alt="Nandi's Secret" class="w-24 h-24"> 
+<img src="img/logo.jpg" alt="Eval Online" class="w-24 h-24"> 
