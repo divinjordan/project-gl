@@ -45,7 +45,7 @@ class QuestionController extends Controller
         $question = Question::create([
             'course_id' => $request->course,
             'user_id' => auth()->user()->id,
-            'question_label' => $request->label
+            'question_label' => $request->title
         ]);
 
         foreach($request->responses as $item){
@@ -83,7 +83,6 @@ class QuestionController extends Controller
     public function edit(Question $question)
     {
         //
-        $
         return view('teachers.questions.edit',['question' => $question, 'courses' => auth()->user()->courses]);
     }
 
@@ -99,10 +98,47 @@ class QuestionController extends Controller
         //
         $question->update([
             'course_id' => $request->course,
-            'question_label' => $request->label
+            'question_label' => $request->title
         ]);
 
+        // create new response.
+        foreach($request->responses as $item){
+            $response = QuestionResponse::where('id',$item['id'])->first();
+            if($response != null){
+                $response->update([
+                    'response_value' => $item['value'],
+                    'response_correct' => $item['correct']
+                ]);
+            }else{
+                QuestionResponse::create([
+                    'question_id' => $question->id,
+                    'response_value' => $item['value'],
+                    'response_correct' => $item['correct']
+                ]);
+            }
+        }
+
+        // delete removed response
+        foreach($request->oldResponses as $item){
+            $bool = false;
+            foreach($request->responses as $element){
+                if($item['id'] == $element['id']){
+                   $bool = true;
+                   break;
+                }
+            }
+            // if is don't exist. remove it
+            if(!$bool){
+                QuestionResponse::where('id',$item['id'])->first()->delete();
+            }
+        }
+
         return response()->json(['success']);
+    }
+
+    public function can_update($array,$element){
+        $bool = false;
+        
     }
 
     /**

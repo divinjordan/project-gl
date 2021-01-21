@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -111,5 +112,10 @@ class CourseController extends Controller
         //
         $course->delete();
         return redirect('/courses');
+    }
+
+    public function userCourses(){
+        $courses = Course::where('user_id', auth()->user()->id)->get();
+        return $courses;
     }
 }

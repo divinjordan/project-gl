@@ -51,6 +51,8 @@ Route::resource('evaluations',EvaluationController::class);
 Route::resource('rooms',RoomController::class);
 Route::resource('requests',RequestAlertController::class);
 
+Route::get('/userCourses',[CourseController::class,'userCourses']);
+
 require __DIR__.'/auth.php';
 
 
