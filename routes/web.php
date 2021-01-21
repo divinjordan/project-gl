@@ -31,6 +31,14 @@ Route::post('/auth/redirect/facebook', function (Request $request) {
     return Socialite::driver('facebook')->redirect();
 })->name('facebook');
 
+Route::get('/chooseFacebook',function(){
+    return view('auth.facebook');
+})->name("chooseFacebook");
+
+Route::get('/chooseGoogle',function(){
+    return view('auth.google');
+})->name("chooseGoogle");
+
 Route::get('/auth/callback/facebook', [SocialiteController::class,'facebook']);
 
 Route::get('/auth/callback/google', [SocialiteController::class,'google']);
@@ -59,12 +67,4 @@ Route::get('/userCourses',[CourseController::class,'userCourses']);
 require __DIR__.'/auth.php';
 
 
-Route::get('/test',[SocialiteController::class,'chooseUser'])->name('test');
 
-Route::get('/chooseFacebook',function(){
-    return view('auth.facebook');
-})->name("chooseFacebook");
-
-Route::get('/chooseGoogle',function(){
-    return view('auth.google');
-})->name("chooseGoogle");
