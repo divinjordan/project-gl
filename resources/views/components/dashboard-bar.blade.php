@@ -55,7 +55,7 @@
                       x-transition:leave-end="transform opacity-0 scale-95"
                       x-on:click.away="isProfileDropdownOpen = false"
                       class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                      <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Votre profile</a>
+                      {{-- <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Votre profile</a> --}}
                       <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="{{ route('logout') }}"

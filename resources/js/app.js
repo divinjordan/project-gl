@@ -144,3 +144,103 @@ window.editQuestion = function (questionId) {
     }
 }
 
+
+window.createEvaluation = function () {
+    return {
+        questions:[],
+        chooses:[],
+        evaluationTitle:'',
+        evaluationDescription: '',
+        course: '',
+        courseId :'',
+        courses: [],
+        errors: [],
+        async init(){
+            let result = await axios.get( `${window.location.origin}/userCourses`)
+            this.courses = result.data;
+            this.course = this.courses[0];
+            this.courseId = this.course.id;
+            this.questions = this.course.questions;
+        },
+        validateForm(){
+            let valid = true;
+            if(this.evaluationTitle == ""){
+                this.errors.push("Le titre de l'evaluation est requis");
+                valid = false;
+            }
+            return valid;
+        },
+        changeCourse(){
+            this.course = this.courses.find( e => e.id == this.courseId);
+            this.questions = this.course.questions;
+            this.chooses = [];
+        },
+        store(){
+            this.errors = [];
+            if(this.validateForm()){
+                axios.post(`${window.location.origin}/evaluations`, {
+                    title: this.evaluationTitle,
+                    description: this.evaluationDescription,
+                    course: this.courseId,
+                    questions: this.chooses
+                })
+                .then( res =>  window.location.assign(window.location.origin+"/evaluations"));
+            }
+        }
+    }
+}
+
+
+window.updateEvaluation = function (evaluationId) {
+    return {
+        questions:[],
+        chooses:[],
+        evaluationTitle:'',
+        evaluationDescription: '',
+        course: '',
+        courseId :'',
+        courses: [],
+        errors: [],
+        evaluation: {},
+        async init(){
+
+            let result = await axios.get( `${window.location.origin}/userCourses`)
+            this.courses = result.data;
+            result = await axios.get(`${window.location.origin}/evaluations/${evaluationId}`)
+            this.evaluation = result.data;
+
+            this.evaluationTitle = this.evaluation.evaluation_title;
+            this.evaluationDescription = this.evaluation.evaluation_description;
+
+            this.courseId = this.evaluation.course_id;
+            this.course = this.courses.find( e => e.id == this.courseId);
+            this.questions = this.course.questions;
+            this.chooses = this.evaluation.questions.map( e => e.question_id);
+        },
+        validateForm(){
+            let valid = true;
+            if(this.evaluationTitle == ""){
+                this.errors.push("Le titre de l'evaluation est requis");
+                valid = false;
+            }
+            return valid;
+        },
+        changeCourse(){
+            this.course = this.courses.find( e => e.id == this.courseId);
+            this.questions = this.course.questions;
+            this.chooses = [];
+        },
+        store(){
+            this.errors = [];
+            if(this.validateForm()){
+                axios.post(`${window.location.origin}/evaluations`, {
+                    title: this.evaluationTitle,
+                    description: this.evaluationDescription,
+                    course: this.courseId,
+                    questions: this.chooses
+                })
+                .then( res =>  window.location.assign(window.location.origin+"/evaluations"));
+            }
+        }
+    }
+}

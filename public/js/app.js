@@ -23142,6 +23142,166 @@ window.editQuestion = function (questionId) {
   });
 };
 
+window.createEvaluation = function () {
+  return {
+    questions: [],
+    chooses: [],
+    evaluationTitle: '',
+    evaluationDescription: '',
+    course: '',
+    courseId: '',
+    courses: [],
+    errors: [],
+    init: function init() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get("".concat(window.location.origin, "/userCourses"));
+
+              case 2:
+                result = _context2.sent;
+                _this4.courses = result.data;
+                _this4.course = _this4.courses[0];
+                _this4.courseId = _this4.course.id;
+                _this4.questions = _this4.course.questions;
+
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    validateForm: function validateForm() {
+      var valid = true;
+
+      if (this.evaluationTitle == "") {
+        this.errors.push("Le titre de l'evaluation est requis");
+        valid = false;
+      }
+
+      return valid;
+    },
+    changeCourse: function changeCourse() {
+      var _this5 = this;
+
+      this.course = this.courses.find(function (e) {
+        return e.id == _this5.courseId;
+      });
+      this.questions = this.course.questions;
+      this.chooses = [];
+    },
+    store: function store() {
+      this.errors = [];
+
+      if (this.validateForm()) {
+        axios.post("".concat(window.location.origin, "/evaluations"), {
+          title: this.evaluationTitle,
+          description: this.evaluationDescription,
+          course: this.courseId,
+          questions: this.chooses
+        }).then(function (res) {
+          return window.location.assign(window.location.origin + "/evaluations");
+        });
+      }
+    }
+  };
+};
+
+window.updateEvaluation = function (evaluationId) {
+  return {
+    questions: [],
+    chooses: [],
+    evaluationTitle: '',
+    evaluationDescription: '',
+    course: '',
+    courseId: '',
+    courses: [],
+    errors: [],
+    evaluation: {},
+    init: function init() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios.get("".concat(window.location.origin, "/userCourses"));
+
+              case 2:
+                result = _context3.sent;
+                _this6.courses = result.data;
+                _context3.next = 6;
+                return axios.get("".concat(window.location.origin, "/evaluations/").concat(evaluationId));
+
+              case 6:
+                result = _context3.sent;
+                _this6.evaluation = result.data;
+                _this6.evaluationTitle = _this6.evaluation.evaluation_title;
+                _this6.evaluationDescription = _this6.evaluation.evaluation_description;
+                _this6.courseId = _this6.evaluation.course_id;
+                _this6.course = _this6.courses.find(function (e) {
+                  return e.id == _this6.courseId;
+                });
+                _this6.questions = _this6.course.questions;
+                _this6.chooses = _this6.evaluation.questions.map(function (e) {
+                  return e.question_id;
+                });
+
+              case 14:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    validateForm: function validateForm() {
+      var valid = true;
+
+      if (this.evaluationTitle == "") {
+        this.errors.push("Le titre de l'evaluation est requis");
+        valid = false;
+      }
+
+      return valid;
+    },
+    changeCourse: function changeCourse() {
+      var _this7 = this;
+
+      this.course = this.courses.find(function (e) {
+        return e.id == _this7.courseId;
+      });
+      this.questions = this.course.questions;
+      this.chooses = [];
+    },
+    store: function store() {
+      this.errors = [];
+
+      if (this.validateForm()) {
+        axios.post("".concat(window.location.origin, "/evaluations"), {
+          title: this.evaluationTitle,
+          description: this.evaluationDescription,
+          course: this.courseId,
+          questions: this.chooses
+        }).then(function (res) {
+          return window.location.assign(window.location.origin + "/evaluations");
+        });
+      }
+    }
+  };
+};
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

@@ -116,6 +116,9 @@ class CourseController extends Controller
 
     public function userCourses(){
         $courses = Course::where('user_id', auth()->user()->id)->get();
+        foreach($courses as $item){
+            $item->questions;
+        }
         return $courses;
     }
 }
