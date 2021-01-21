@@ -23,11 +23,14 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
-             <!-- Surname -->
-             <div class="mt-4">
-                <x-label for="surname" :value="__('Surname')" />
 
-                <x-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')" required autofocus />
+            <!-- role -->
+            <div class="mt-4">
+                <label for="role" class="block text-sm font-medium text-gray-700"> Role </label>
+                <select name="role" class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                      <option value="teacher"> Enseignant </option> 
+                      <option value="student"> Etudiant </option>
+                </select>
             </div>
 
             <!-- Email Address -->

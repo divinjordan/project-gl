@@ -15,6 +15,10 @@ use App\Providers\RouteServiceProvider;
 class SocialiteController extends Controller
 {
     //
+    public function chooseUser(){
+       
+    }
+
     public function facebook(){
 
         $user = Socialite::driver('facebook')->user();
@@ -51,6 +55,7 @@ class SocialiteController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'password' => Str::random(20),
+                'role' => session('role')
             ]);
             Auth::login($userCreated);
             event(new Registered($userCreated));

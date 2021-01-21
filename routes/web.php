@@ -9,6 +9,7 @@ use App\Http\Controllers\ResponseController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RequestController;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,11 +21,13 @@ use App\Http\Controllers\RequestController;
 |
 */
 
-Route::get('/auth/redirect/google', function () {
+Route::post('/auth/redirect/google', function (Request $request) {
+    $request->session()->put('role', $request->input('role'));
     return Socialite::driver('google')->redirect();
 })->name('google');
 
-Route::get('/auth/redirect/facebook', function () {
+Route::post('/auth/redirect/facebook', function (Request $request) {
+    $request->session()->put('role', $request->input('role'));
     return Socialite::driver('facebook')->redirect();
 })->name('facebook');
 
@@ -56,8 +59,12 @@ Route::get('/userCourses',[CourseController::class,'userCourses']);
 require __DIR__.'/auth.php';
 
 
-Route::get('/test',function(){
+Route::get('/test',[SocialiteController::class,'chooseUser'])->name('test');
 
+Route::get('/chooseFacebook',function(){
+    return view('auth.facebook');
+})->name("chooseFacebook");
 
-    
-})->name('test');
+Route::get('/chooseGoogle',function(){
+    return view('auth.google');
+})->name("chooseGoogle");
