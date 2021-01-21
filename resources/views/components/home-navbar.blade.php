@@ -52,9 +52,9 @@
                   <!-- Profile dropdown -->
                   <div class="ml-3 relative">
                     <div> 
-                      <button x-on:click="isProfileDropdownOpen = !isProfileDropdownOpen" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
+                      <button x-on:click="isProfileDropdownOpen = !isProfileDropdownOpen" class=" flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-white" id="user-menu" aria-haspopup="true">
                         <span class="sr-only">Open user menu</span>
-                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                        <img class="h-8 w-8 rounded-full" src="img/avatar.svg" alt="">
                       </button>
                     </div>     
                     <div 
@@ -103,7 +103,7 @@
         </div>
         <div class="border-t border-gray-200 pt-4">
           @if (!Auth::check())
-            <a href="#" class="bg-indigo-700 text-white block text-center px-3 py-2 rounded-md text-base font-medium"> Connexion </a>
+            <a href="{{ route('login') }}" class="bg-indigo-700 text-white block text-center px-3 py-2 rounded-md text-base font-medium"> Connexion </a>
             @if (Route::has('register'))
               <a href="{{ route('register') }}" class="bg-indigo-700 block text-center mt-1 text-white px-3 py-2 rounded-md text-base font-medium"> Créer un compte </a>
             @endif

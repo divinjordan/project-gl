@@ -52,3 +52,10 @@ Route::resource('rooms',RoomController::class);
 Route::resource('requests',RequestAlertController::class);
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/test',function(){
+
+
+    
+})->name('test');

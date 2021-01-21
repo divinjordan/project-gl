@@ -21340,9 +21340,154 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"];
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
+
+__webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+window.createQuestion = function (firstCourse) {
+  return {
+    responses: [{
+      id: 0,
+      text: "test",
+      correct: false
+    }],
+    corrects: [],
+    question: '',
+    response: '',
+    course: firstCourse,
+    errors: [],
+    responseEditedValue: '',
+    addResponse: function addResponse() {
+      this.responses.push({
+        id: this.responses.length + 1,
+        text: this.response
+      });
+      this.response = '';
+    },
+    deleteResponse: function deleteResponse(event) {
+      var id = event.srcElement.dataset.id;
+
+      if (confirm("Confirmer la suppression ?")) {
+        this.responses = this.responses.filter(function (e) {
+          return e.id != id;
+        });
+      }
+    },
+    create: function create() {
+      var _this = this;
+
+      var canSend = true;
+
+      if (this.question == '') {
+        this.errors.push("L'intitulé de la question est requis");
+        canSend = false;
+      }
+
+      if (!this.responses.length) {
+        this.errors.push("Aucune proposition de reponses n'a été ajouté");
+        canSend = false;
+      }
+
+      if (canSend) {
+        var data = this.responses.map(function (element) {
+          return {
+            id: element.id,
+            value: element.text,
+            correct: _this.corrects.includes(element.id + "")
+          };
+        });
+        axios.post(window.location.origin + "/questions", {
+          label: this.question,
+          responses: data,
+          course: this.course
+        }).then(function (res) {
+          window.location.assign(window.location.origin + "/questions");
+        });
+      }
+    }
+  };
+};
+
+window.editQuestion = function (questionId) {
+  return {
+    responses: [{
+      id: 0,
+      text: "test",
+      correct: false
+    }],
+    corrects: [],
+    question: '',
+    response: '',
+    course: '',
+    errors: [],
+    // Boolean to switch edit question behavior.
+    init: function init() {
+      var _this2 = this;
+
+      axios.get(window.location.origin + "/questions/" + questionId).then(function (res) {
+        _this2.responses = res.data.responses.map(function (element, index) {
+          return {
+            id: index,
+            text: element.response_value,
+            correct: element.response_correct
+          };
+        });
+        _this2.question = res.data.question_label;
+        _this2.corrects = _this2.responses.filter(function (element) {
+          return element.correct;
+        }).map(function (e) {
+          return e.id;
+        });
+        _this2.course = res.data.course.id;
+      });
+    },
+    addResponse: function addResponse() {
+      this.responses.push({
+        id: this.responses.length + 1,
+        text: this.response,
+        editBool: false
+      });
+      this.response = '';
+    },
+    save: function save() {
+      var _this3 = this;
+
+      var canSend = true;
+
+      if (this.question == '') {
+        this.errors.push("L'intitulé de la question est requis");
+        canSend = false;
+      }
+
+      if (!this.responses.length) {
+        this.errors.push("Aucune proposition de reponses n'a été ajouté");
+        canSend = false;
+      }
+
+      if (canSend) {
+        var data = this.responses.map(function (element) {
+          return {
+            id: element.id,
+            value: element.text,
+            correct: _this3.corrects.includes(element.id + "")
+          };
+        });
+        axios.put(window.location.origin + "/questions", {
+          label: this.question,
+          responses: data,
+          course: this.course
+        }).then(function (res) {
+          winddow.location.assign(window.location.origin + "/questions");
+        });
+      }
+    }
+  };
+};
 
 /***/ }),
 
@@ -21385,8 +21530,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/nguekeu/workspace/nandi-secret/public/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/nguekeu/workspace/nandi-secret/public/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/nguekeu/workspace/public/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/nguekeu/workspace/public/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

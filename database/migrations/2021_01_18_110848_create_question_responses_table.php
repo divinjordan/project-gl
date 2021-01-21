@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateResponsesTable extends Migration
+class CreateQuestionResponsesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateResponsesTable extends Migration
      */
     public function up()
     {
-        Schema::create('responses', function (Blueprint $table) {
+        Schema::create('question_responses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('question_id')->constrained()->onDelete('cascade');
             $table->string('response_value');
-            $table->string('response_nature');
+            $table->boolean('response_correct');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateResponsesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('responses');
+        Schema::dropIfExists('question_responses');
     }
 }

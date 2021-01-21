@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\QuestionResponse;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -15,6 +16,9 @@ class QuestionController extends Controller
     public function index()
     {
         //
+        $questions = Question::where('user_id',auth()->user()->id)->get();
+       
+        return view('teachers.questions.questions',['questions' => $questions]);
     }
 
     /**
@@ -25,6 +29,8 @@ class QuestionController extends Controller
     public function create()
     {
         //
+        $courses = auth()->user()->courses->all();
+        return view('teachers.questions.create',['courses' => $courses, 'first_course' => $courses[0]]);
     }
 
     /**
@@ -36,6 +42,21 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         //
+        $question = Question::create([
+            'course_id' => $request->course,
+            'user_id' => auth()->user()->id,
+            'question_label' => $request->label
+        ]);
+
+        foreach($request->responses as $item){
+            QuestionResponse::create([
+                'question_id' => $question->id,
+                'response_value' => $item['value'],
+                'response_correct' => $item['correct']
+            ]);
+        }
+
+        return response()->json(['success']);
     }
 
     /**
@@ -47,6 +68,10 @@ class QuestionController extends Controller
     public function show(Question $question)
     {
         //
+        $question->responses;
+        $question->course;
+
+        return $question;
     }
 
     /**
@@ -58,6 +83,8 @@ class QuestionController extends Controller
     public function edit(Question $question)
     {
         //
+        $
+        return view('teachers.questions.edit',['question' => $question, 'courses' => auth()->user()->courses]);
     }
 
     /**
@@ -70,6 +97,12 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
         //
+        $question->update([
+            'course_id' => $request->course,
+            'question_label' => $request->label
+        ]);
+
+        return response()->json(['success']);
     }
 
     /**
@@ -81,5 +114,7 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //
+        $question->delete();
+        return redirect('/questions');
     }
 }
